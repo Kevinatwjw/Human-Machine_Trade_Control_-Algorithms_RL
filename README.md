@@ -5,7 +5,7 @@
 
 # 基于强化学习的序贯决策人机切换控制
 
-本项目是论文 **"Traded Control of Human–Machine Systems for Sequential Decision-Making Based on Reinforcement Learning" (Q. Zhang et al., 2022)** 的一个代码实现与拓展。项目不仅复现了论文中提出的**机器切换人类控制（MTHA）**和**人类切换机器控制（HTMA）**两大核心框架，还对其底层算法进行了优化，并实现了包括**自主边界（Autonomous Boundary）**和**可信度评估（Credibility Assessment）\*\*在内的关键机制。
+本项目是论文 **"Traded Control of Human–Machine Systems for Sequential Decision-Making Based on Reinforcement Learning" (Q. Zhang et al., 2022)** 的一个代码实现与拓展。项目不仅复现了论文中提出的 机器切换人类控制（MTHA）和人类切换机器控制（HTMA）两大核心框架，还对其底层算法进行了优化，并实现了包括自主边界（Autonomous Boundary）和可信度评估（Credibility Assessment）在内的关键机制。
 
 与原论文不同，本实现采用 **Double DQN** 算法代替标准DQN，旨在缓解Q值过高估计问题，提升训练的稳定性与策略的可靠性。
 
