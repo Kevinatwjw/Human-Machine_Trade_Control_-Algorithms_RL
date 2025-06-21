@@ -1,5 +1,4 @@
 本仓库基于"Traded Control of Human–Machine Systems for  Sequential Decision-Making Based on  Reinforcement Learning"论文综合实现HOA/MOA/HTMA/MTHA/HTMA-B/MTHA-B算法
-好的，这是一个根据您提供的代码文件和项目背景编写的、结构完整且风格专业的 `README.md` 文件。
 
 -----
 
