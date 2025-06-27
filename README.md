@@ -32,8 +32,8 @@
 
 1. 克隆本仓库到本地：  
    ```bash
-   git clone <your-repository-url>
-   cd <repository-name>
+   git clone https://github.com/Kevinatwjw/Human-Machine_Trade_Control_-Algorithms_RL.git
+   cd Human-Machine_Trade_Control_-Algorithms_RL
    ```
    🌟
 
@@ -122,53 +122,45 @@ python plotter.py
 
 ## 结果展示 🌟📊
 
-本项目在 **LunarLander-v3** 环境中验证了各算法性能，复现了论文中的关键实验结果，具体如下（参考阅读报告 5.3 节）：
+我们在 **LunarLander-v3** 仿真环境中，对项目中的各个算法进行了系统性的“大比武”！⚔️ 实验首先对作为机器智能体的 Double DQN 模型进行了500轮的预训练，以确保它身经百战、具备可靠的基准决策能力。随后，在100轮的正式评估中，我们收集到了以下激动人心的关键结果，完美复现并验证了论文的核心思想。🚀
 
-- **奖励对比**：  
-  - **MTHA 场景**：  
-    - **HOA**（仅人类控制）奖励最低，平均值较低，符合人类操作精度不足的假设。  
-    - **MTHA**（机器干预人类）累积奖励有所提升，表明机器干预的初步效果。  
-    - **MTHA-B**（带边界优化）奖励最高，平均值比 **HOA** 和 **MTHA** 提高约 30%-40%，验证了自主边界的优化作用。箱线图显示 **MTHA-B** 奖励分布更集中，异常点（红+号）减少（参考 ![Reward Comparison](results\Reward Comparison.png)）。  
-  - **HTMA 场景**：  
-    - **MOA**（仅机器控制）奖励较低，反映机器训练不足。  
-    - **HTMA**（人类干预机器）奖励有所提升。  
-    - **HTMA-B** 奖励显著提高，成功回合奖励平均值更高，验证了自主边界的优势。  
+### 1\. 累积奖励对比 🏆
 
-- **成功率与坠毁率**：  
-  - **MTHA 场景**：  
-    - **HOA** 成功率最低，崩溃率高，反映人类操作的不稳定性。  
-    - **MTHA** 成功率有所提高，崩溃率降低。  
-    - **MTHA-B** 成功率最高可达 **0.45**，比 **HOA** 和 **MTHA** 改善显著，崩溃率降低约 20%，由于边界信息引入导致一定不稳定性，但整体性能优异。  
-  - **HTMA 场景**：  
-    - **MOA** 成功率持续较低，崩溃率较高。  
-    - **HTMA** 成功率有所提升。  
-    - **HTMA-B** 成功率超过 **0.45**，崩溃率低于 **MOA**，表明人类干预优化了决策。  
+- ![Reward Comparison](results/Reward%20Comparison.png)
 
-- **动作占比**：  
-  - **MTHA 场景**：  
-    - **MTHA** 中人类动作占比较低，机器动作占主导。  
-    - **MTHA-B** 中人类动作、边界动作、机器动作比例约为 **2:3:5**，边界动作在决策中起到关键作用（参考 ![Action Rate](results\Action Rate.png)）。  
-  - **HTMA 场景**：  
-    - **HTMA** 中人类动作占比较高，机器动作较少。  
-    - **HTMA-B** 中人类动作、机器动作、边界动作比例约为 **3:1:4**，人类动作占比增加，反映了人类主导的优势（参考 ![Action Rate](results\Action Rate.png)）。  
+累积奖励的分布情况清晰地揭示了各算法的“武力值” 💪，优秀的算法能够获得更高的分数！
 
-- **轨迹分析**：  
-  - **MTHA 场景**：  
-    - **HOA** 轨迹整齐但成功率低，倾向于快速失败。  
-    - **MTHA** 轨迹较乱但成功率提高，机器干预有效。  
-    - **MTHA-B** 轨迹介于两者之间，成功率和运行时间步优化更明显，任务完成更高效（参考 ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)）。  
-  - **HTMA 场景**：  
-    - **MOA** 轨迹无序，成功率低。  
-    - **HTMA** 轨迹改善，成功率提升。  
-    - **HTMA-B** 轨迹更优化，成功率最高，运行时间步显著减少（参考 ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)）。  
+  * **在机器交易人类 (MTHA) 场景中**：
+      * **HOA (纯人类操作) 👨‍💻** 的中位数奖励位于负值区间，表现不尽人意。
+      * [cite\_start]引入机器干预的 **MTHA** 与 **MTHA-B 🤖** 算法的奖励表现均显著优于 HOA，奖励中位数从负值大幅跃升至 **约250分** 的较高水平 [cite: 421]，证明了人机协作框架的强大威力！
+  * **在人类交易机器 (HTMA) 场景中**：
+      * **HTMA-B (引入自主边界) 🧠** 算法的奖励曲线和分布同样全面优于基准的 **MOA (纯机器操作)** 与 **HTMA**。
+      * [cite\_start]HTMA-B 的中位数奖励提升至 **约270分**，且其奖励分布系统性地高于其他算法，表明其任务完成质量最优 [cite: 421]。
 
-- **稳定性**：  
-  - **MTHA-B** 和 **HTMA-B** 的奖励分布更集中，异常点减少，验证了算法的鲁棒性，符合阅读报告中的分析。  
+### 2\. 成功率与飞行轨迹 🛰️ 
 
-所有结果可通过 `plotter.py` 复现，生成的图表保存在 `results/` 文件夹中。图表链接：  
-- ![Reward Comparison](results\Reward Comparison.png)  
-- ![Action Rate](results\Action Rate.png)  
-- ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)  
+- ![Trajectory with Success Rate](results/Trajectory%20with%20Success%20Rate.jpg)
+ 
+任务成功率与飞行轨迹的分析进一步印证了奖励对比的结论，展示了算法的智慧与稳定。
+
+  * [cite\_start]**HOA** 的成功率仅为 **4%**，其飞行轨迹散乱，像个没头苍蝇，难以有效完成着陆任务 [cite: 421]。
+  * [cite\_start]引入机器干预后，**MTHA** 与 **MTHA-B** 算法的成功率均大幅提升至 **73%**，轨迹也表现出高度的目标导向性和稳定性，直奔目标！[cite: 421]
+  * [cite\_start]在HTMA场景下，相较于 **MOA** 的 **66%** 成功率，**HTMA** 将其微弱提升至 **67%** [cite: 421]。
+  * [cite\_start]然而，引入自主边界的 **HTMA-B** 算法取得了 **高达89%的成功率** 🎉，其飞行轨迹在所有算法中也最为平稳丝滑，展示了其在任务执行上的卓越性能 [cite: 421]。
+  * [cite\_start]**值得一提的是**，通过将原论文的DQN优化为 **Double DQN**，系统整体的稳定性得到了较大提升 [cite: 419]，这也是HTMA-B能取得如此优异表现的关键因素之一。
+
+### 3\. 决策来源分析 🤝 
+
+- ![Action Rate](results/Action%20Rate.png)
+
+决策权归谁？这个分析让我们能深入理解人、机、边界三者是如何协同工作的。
+
+  * **在MTHA场景中**：
+      * [cite\_start]性能的提升源于决策权的有效转移。在 **MTHA** 框架下，机器的高精度决策在绝大多数时间里占据主导，有效弥补了人类操作的不足 [cite: 422]。
+      * [cite\_start]引入自主边界的 **MTHA-B** 算法在此基础上进一步优化，边界动作的出现替代了部分人类的次优操作，实现了更精细的决策 [cite: 422]。
+  * **在HTMA场景中**：
+      * **HTMA-B** 呈现出一种更为高效的 **“人-机-边界”三方协同模式** 👨‍💻🤖🧠。
+      * [cite\_start]在该模式下，自主边界通过不断学习并融合人类与机器的历史最优经验，形成了一个可靠的第三方决策源，显著提升了机器在人类主导下的表现，是达成高成功率的核心 [cite: 422]。  
 
 ## 许可协议 📜
 
