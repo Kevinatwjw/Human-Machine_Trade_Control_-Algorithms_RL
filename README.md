@@ -122,58 +122,53 @@ python plotter.py
 
 ## 结果展示 🌟📊
 
-本项目在 **LunarLander-v3** 环境中验证了各算法性能，复现了论文中的关键实验结果，具体如下：
+本项目在 **LunarLander-v3** 环境中验证了各算法性能，复现了论文中的关键实验结果，具体如下（参考阅读报告 5.3 节）：
 
 - **奖励对比**：  
   - **MTHA 场景**：  
     - **HOA**（仅人类控制）奖励最低，平均值较低，符合人类操作精度不足的假设。  
     - **MTHA**（机器干预人类）累积奖励有所提升，表明机器干预的初步效果。  
-    - **MTHA-B**（带边界优化）奖励最高，平均值比 **HOA** 和 **MTHA** 提高约 30%-40%，验证了自主边界的优化作用。  
-    - 箱线图显示 **MTHA-B** 奖励分布更集中，异常点（红+号）减少（参考 [Fig. 5a](#)）。  
+    - **MTHA-B**（带边界优化）奖励最高，平均值比 **HOA** 和 **MTHA** 提高约 30%-40%，验证了自主边界的优化作用。箱线图显示 **MTHA-B** 奖励分布更集中，异常点（红+号）减少（参考 ![Reward Comparison](results\Reward Comparison.png)）。  
   - **HTMA 场景**：  
     - **MOA**（仅机器控制）奖励较低，反映机器训练不足。  
     - **HTMA**（人类干预机器）奖励有所提升。  
-    - **HTMA-B** 奖励显著提高，成功回合奖励平均值更高，验证了自主边界的优势（参考 [Fig. 11a](#)）。  
+    - **HTMA-B** 奖励显著提高，成功回合奖励平均值更高，验证了自主边界的优势。  
 
 - **成功率与坠毁率**：  
   - **MTHA 场景**：  
     - **HOA** 成功率最低，崩溃率高，反映人类操作的不稳定性。  
     - **MTHA** 成功率有所提高，崩溃率降低。  
-    - **MTHA-B** 成功率最高可达 **0.45**，比 **HOA** 和 **MTHA** 改善显著，崩溃率降低约 20%，由于边界信息引入导致一定不稳定性，但整体性能优异（参考 [Fig. 5c](#) 和 [Fig. 5d](#)）。  
+    - **MTHA-B** 成功率最高可达 **0.45**，比 **HOA** 和 **MTHA** 改善显著，崩溃率降低约 20%，由于边界信息引入导致一定不稳定性，但整体性能优异。  
   - **HTMA 场景**：  
     - **MOA** 成功率持续较低，崩溃率较高。  
     - **HTMA** 成功率有所提升。  
-    - **HTMA-B** 成功率超过 **0.45**，崩溃率低于 **MOA**，表明人类干预优化了决策（参考 [Fig. 11c](#) 和 [Fig. 11d](#)）。  
+    - **HTMA-B** 成功率超过 **0.45**，崩溃率低于 **MOA**，表明人类干预优化了决策。  
 
 - **动作占比**：  
   - **MTHA 场景**：  
     - **MTHA** 中人类动作占比较低，机器动作占主导。  
-    - **MTHA-B** 中人类动作、边界动作、机器动作比例约为 **2:3:5**，边界动作在决策中起到关键作用（参考 [Fig. 6b](#)）。  
+    - **MTHA-B** 中人类动作、边界动作、机器动作比例约为 **2:3:5**，边界动作在决策中起到关键作用（参考 ![Action Rate](results\Action Rate.png)）。  
   - **HTMA 场景**：  
     - **HTMA** 中人类动作占比较高，机器动作较少。  
-    - **HTMA-B** 中人类动作、机器动作、边界动作比例约为 **3:1:4**，人类动作占比增加，反映了人类主导的优势（参考 [Fig. 12b](#)）。  
+    - **HTMA-B** 中人类动作、机器动作、边界动作比例约为 **3:1:4**，人类动作占比增加，反映了人类主导的优势（参考 ![Action Rate](results\Action Rate.png)）。  
 
 - **轨迹分析**：  
   - **MTHA 场景**：  
-    - **HOA** 轨迹整齐但成功率低，倾向于快速失败（参考 [Fig. 7a](#)）。  
-    - **MTHA** 轨迹较乱但成功率提高，机器干预有效（参考 [Fig. 7b](#)）。  
-    - **MTHA-B** 轨迹介于两者之间，成功率和运行时间步优化更明显，任务完成更高效（参考 [Fig. 7c](#)）。  
+    - **HOA** 轨迹整齐但成功率低，倾向于快速失败。  
+    - **MTHA** 轨迹较乱但成功率提高，机器干预有效。  
+    - **MTHA-B** 轨迹介于两者之间，成功率和运行时间步优化更明显，任务完成更高效（参考 ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)）。  
   - **HTMA 场景**：  
-    - **MOA** 轨迹无序，成功率低（参考 [Fig. 13a](#)）。  
-    - **HTMA** 轨迹改善，成功率提升（参考 [Fig. 13b](#)）。  
-    - **HTMA-B** 轨迹更优化，成功率最高，运行时间步显著减少（参考 [Fig. 13c](#) 和 [Fig. 14](#)）。  
+    - **MOA** 轨迹无序，成功率低。  
+    - **HTMA** 轨迹改善，成功率提升。  
+    - **HTMA-B** 轨迹更优化，成功率最高，运行时间步显著减少（参考 ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)）。  
 
 - **稳定性**：  
   - **MTHA-B** 和 **HTMA-B** 的奖励分布更集中，异常点减少，验证了算法的鲁棒性，符合阅读报告中的分析。  
 
-所有结果可通过 `plotter.py` 复现，生成的图表与论文风格一致，保存在 `results/` 文件夹中。图表链接示例（需根据实际文件路径调整）：  
-- [Fig. 5a - Reward Comparison](#)  
-- [Fig. 5c - Success Rate](#)  
-- [Fig. 5d - Crash Rate](#)  
-- [Fig. 6b - MTHA-B Action Percentage](#)  
-- [Fig. 7c - MTHA-B Trajectory](#)  
-- [Fig. 11c - HTMA-B Success Rate](#)  
-- [Fig. 13c - HTMA-B Trajectory](#)  
+所有结果可通过 `plotter.py` 复现，生成的图表保存在 `results/` 文件夹中。图表链接：  
+- ![Reward Comparison](results\Reward Comparison.png)  
+- ![Action Rate](results\Action Rate.png)  
+- ![Trajectory with Success Rate](results\Trajectory with Success Rate.jpg)  
 
 ## 许可协议 📜
 
