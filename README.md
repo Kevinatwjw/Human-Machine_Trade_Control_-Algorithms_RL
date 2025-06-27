@@ -46,12 +46,12 @@
 
 3. 安装依赖库。创建一个 `requirements.txt` 文件，内容如下：  
    ```
-   gymnasium
-   torch
-   numpy
-   pygame
-   matplotlib
-   pandas
+   gymnasium>=0.28.1
+   torch>=2.0.0
+   numpy>=1.21.0
+   pygame>=2.5.0
+   matplotlib>=3.5.0
+   pandas>=1.3.0
    ```
    然后运行安装命令：  
    ```bash
