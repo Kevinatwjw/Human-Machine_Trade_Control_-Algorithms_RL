@@ -1,50 +1,50 @@
-# 基于强化学习的序贯决策人机切换控制 🎉🚀
+# Reinforcement Learning-Based Sequential Decision-Making for Human-Machine Traded Control 🎉🚀
 
-本仓库基于 **"Traded Control of Human–Machine Systems for Sequential Decision-Making Based on Reinforcement Learning" (Q. Zhang et al., 2022)** 论文，综合实现了 **HOA/MOA/HTMA/MTHA/HTMA-B/MTHA-B** 算法。项目不仅复现了论文中的核心框架，还对其底层算法进行了优化，引入了 **Double DQN** 算法以提升训练稳定性和策略可靠性，结合 **自主边界**（Autonomous Boundary）和 **可信度评估**（Credibility Assessment）机制，打造了高效的人机协作系统！😄👨‍💻🤖
+This repository is based on the paper **"Traded Control of Human–Machine Systems for Sequential Decision-Making Based on Reinforcement Learning" (Q. Zhang et al., 2022)** and comprehensively implements the **HOA/MOA/HTMA/MTHA/HTMA-B/MTHA-B** algorithms. The project not only reproduces the core framework from the paper but also optimizes its underlying algorithms by integrating the **Double DQN** algorithm to enhance training stability and policy reliability. Combined with mechanisms for **Autonomous Boundary** and **Credibility Assessment**, it creates an efficient human-machine collaboration system! 😄👨‍💻🤖
 
 ---
 
-## 核心特性 ✨🔧
+## Key Features ✨🔧
 
-- **切换控制框架**：完整实现了 **MTHA**（机器切换人类控制）和 **HTMA**（人类切换机器控制）两种人机协作模式。🎮
-- **自主边界实现**：通过高效的 **k-近邻（k-NN）算法**，动态生成高质量的备选决策，优化人机决策权限划分。📊
-- **可信度评估**：基于 **蒙特卡洛 Dropout (MC Dropout)** 近似贝叶斯神经网络，量化机器决策不确定性；通过历史行为数据评估人类可信度。📈
-- **算法优化**：采用 **Double DQN** 算法，缓解 Q 值过高估计问题，提升价值评估精度。🏆
-- **人类在环交互**：利用 `Pygame` 模块支持实时人类输入，允许玩家随时介入训练和评估。🎹
-- **模块化设计**：代码结构清晰，将智能体、配置文件、数据处理和可视化功能解耦，便于理解与拓展。🛠️
+- **Traded Control Framework**: Fully implements **MTHA** (Machine-Traded Human Control) and **HTMA** (Human-Traded Machine Control) for human-machine collaboration. 🎮
+- **Autonomous Boundary**: Utilizes the efficient **k-Nearest Neighbors (k-NN) algorithm** to dynamically generate high-quality alternative decisions, optimizing the allocation of decision authority. 📏
+- **Credibility Assessment**: Quantifies machine decision uncertainty using **Monte Carlo Dropout (MC Dropout)** for approximate Bayesian neural networks and evaluates human credibility based on historical behavior data. 📈
+- **Algorithm Optimization**: Employs **Double DQN** to mitigate Q-value overestimation, improving value estimation accuracy. 🏆
+- **Human-in-the-Loop Interaction**: Supports real-time human input via the `Pygame` module, allowing players to intervene during training and evaluation. 🎹
+- **Modular Design**: Features a clear code structure, decoupling agents, configurations, data handling, and visualization for easy understanding and extensibility. 🛠️
 
-## 项目结构 📂
+## Project Structure 📂
 
 ```
 .
-├── agents.py               # 定义强化学习智能体 (DoubleDQN)、经验回放池、自主边界 (KnnBoundary) 等核心类 😊
-├── config.py               # 存储所有超参数、路径、算法选择等全局配置 ⚙️
-├── data_handler.py         # 用于在评估后收集和保存实验数据 (如奖励、成功率、轨迹等) 📝
-├── human_controller.py     # 处理人类玩家的键盘输入 🎮
-├── main_mtha_b.py          # MTHA (机器切换人类) 场景的训练与评估主程序 🤖👨‍💻
-├── main_htma_b.py          # HTMA (人类切换机器) 场景的训练与评估主程序 👨‍💻🤖
-├── plotter.py              # 用于根据保存的数据绘制结果图表 📊🎨
-├── model/                    # 存放训练好的模型文件 💾
-└── results/                  # 存放评估数据和生成的图表 📁
+├── agents.py               # Defines RL agents (DoubleDQN), experience replay buffer, and autonomous boundary (KnnBoundary) classes 😊
+├── config.py               # Stores global configurations like hyperparameters, paths, and algorithm selection ⚙️
+├── data_handler.py         # Handles collection and storage of experimental data (rewards, success rates, trajectories, etc.) 📝
+├── human_controller.py     # Manages keyboard inputs from human players 🎮
+├── main_mtha_b.py          # Main script for training and evaluating MTHA (Machine-Traded Human) scenarios 🤖👨‍💻
+├── main_htma_b.py          # Main script for training and evaluating HTMA (Human-Traded Machine) scenarios 👨‍💻🤖
+├── plotter.py              # Generates result visualizations based on saved data 📊🎨
+├── model/                  # Stores trained model files 💾
+└── results/                # Stores evaluation data and generated plots 📁
 ```
 
-## 环境配置 🌱
+## Environment Setup 🌱
 
-1. 克隆本仓库到本地：  
+1. Clone the repository to your local machine:  
    ```bash
    git clone https://github.com/Kevinatwjw/Human-Machine_Trade_Control_-Algorithms_RL.git
    cd Human-Machine_Trade_Control_-Algorithms_RL
    ```
    🌟
 
-2. 建议创建一个独立的 Python 虚拟环境（使用 `conda` 或 `venv`）：  
+2. Create a dedicated Python virtual environment (using `conda` or `venv`):  
    ```bash
    conda create -n sdmc python=3.9
    conda activate sdmc
    ```
    🐍
 
-3. 安装依赖库。创建一个 `requirements.txt` 文件，内容如下：  
+3. Install dependencies. Create a `requirements.txt` file with the following content:  
    ```
    gymnasium>=0.28.1
    torch>=2.0.0
@@ -53,131 +53,131 @@
    matplotlib>=3.5.0
    pandas>=1.3.0
    ```
-   然后运行安装命令：  
+   Then run:  
    ```bash
    pip install -r requirements.txt
    ```
    📦
 
-## 使用指南 📖
+## Usage Guide 📖
 
-### 1. 算法配置 🔧
+### 1. Algorithm Configuration 🔧
 
-在运行程序前，请修改 `config.py` 中的 `ALGORITHM` 变量，选择运行模式：  
+Before running the program, modify the `ALGORITHM` variable in `config.py` to select the operating mode:
 
-- **MTHA 场景** (运行 `main_mtha_b.py`):  
-  - `'hoa'`: 纯人类操作 (Human-Only Algorithm) 👨‍💻  
-  - `'mtha'`: 机器切换人类控制 🤖👉👨‍💻  
-  - `'mtha-b'`: 机器切换人类控制 + 自主边界 🤖👉👨‍💻📏  
+- **MTHA Scenario** (run `main_mtha_b.py`):  
+  - `'hoa'`: Human-Only Algorithm 👨‍💻  
+  - `'mtha'`: Machine-Traded Human Control 🤖👉👨‍💻  
+  - `'mtha-b'`: Machine-Traded Human Control + Autonomous Boundary 🤖👉👨‍💻📏  
 
-- **HTMA 场景** (运行 `main_htma_b.py`):  
-  - `'moa'`: 纯机器操作 (Machine-Only Algorithm) 🤖  
-  - `'htma'`: 人类切换机器控制 👨‍💻👉🤖  
-  - `'htma-b'`: 人类切换机器控制 + 自主边界 👨‍💻👉🤖📏  
+- **HTMA Scenario** (run `main_htma_b.py`):  
+  - `'moa'`: Machine-Only Algorithm 🤖  
+  - `'htma'`: Human-Traded Machine Control 👨‍💻👉🤖  
+  - `'htma-b'`: Human-Traded Machine Control + Autonomous Boundary 👨‍💻👉🤖📏  
 
-### 2. 模型训练 🎓
+### 2. Model Training 🎓
 
-训练新模型，使用 `--mode train` 参数。  
+Train a new model using the `--mode train` parameter.  
 
-**示例：训练 HTMA-B 模型**  
-1. 在 `config.py` 中设置 `ALGORITHM = 'htma-b'`。  
-2. 运行 `main_htma_b.py`：  
+**Example: Train HTMA-B Model**  
+1. Set `ALGORITHM = 'htma-b'` in `config.py`.  
+2. Run `main_htma_b.py`:  
    ```bash
    python main_htma_b.py --mode train
    ```
-   训练中，人类玩家可通过键盘（方向键）介入。完成时，模型和边界数据保存至 `model/` 文件夹。⏳💾
+   During training, human players can intervene using keyboard inputs (arrow keys). Upon completion, the model and boundary data are saved to the `model/` folder. ⏳💾
 
-### 3. 模型评估 📊
+### 3. Model Evaluation 📊
 
-评估模型，使用 `--mode eval` 参数（关闭随机探索，epsilon=0）。  
+Evaluate the model using the `--mode eval` parameter (disables random exploration, epsilon=0).  
 
-**示例：评估 MTHA-B 模型**  
-1. 确保 `model/` 中有预训练模型 (`dqn_lunarlander_mthab_finetuned.pth`) 和边界数据 (`mthab_boundary.pkl`)。  
-2. 设置 `ALGORITHM = 'mtha-b'`。  
-3. 运行 `main_mtha_b.py`：  
+**Example: Evaluate MTHA-B Model**  
+1. Ensure pretrained models (`dqn_lunarlander_mthab_finetuned.pth`) and boundary data (`mthab_boundary.pkl`) are in the `model/` folder.  
+2. Set `ALGORITHM = 'mtha-b'`.  
+3. Run `main_mtha_b.py`:  
    ```bash
    python main_mtha_b.py --mode eval
    ```
-   评估数据保存至 `results/MTHA-B/`（`.npz` 文件）。✅
+   Evaluation data is saved to `results/MTHA-B/` as `.npz` files. ✅
 
-### 4. 详细日志 🗒️
+### 4. Detailed Logging 🗒️
 
-添加 `--verbose` 标志，打印每步决策详情（Q 值、可信度、仲裁结果）：  
+Add the `--verbose` flag to print detailed decision information (Q-values, credibility, arbitration results):  
 ```bash
 python main_htma_b.py --mode eval --verbose
 ```
 🔍
 
-### 5. 结果可视化 🎨
+### 5. Result Visualization 🎨
 
-评估后，运行 `plotter.py` 生成图表（确保路径正确）：  
-- 奖励曲线：如累积奖励对比图。  
-- 成功率/坠毁率：展示算法稳定性。  
-- 动作占比：分析人类、机器、边界贡献。  
-- 轨迹图：可视化着陆路径。  
+After evaluation, run `plotter.py` to generate visualizations (ensure paths are correct):  
+- Reward curves: Cumulative reward comparison.  
+- Success/Crash rates: Algorithm stability analysis.  
+- Action distribution: Contribution of human, machine, and boundary decisions.  
+- Trajectory plots: Visualization of landing paths.  
 ```bash
 python plotter.py
 ```
 📈🌐
 
-## 结果展示 🌟📊
+## Results Showcase 🌟📊
 
-我们在 **LunarLander-v3** 仿真环境中，对项目中的各个算法进行了系统性的“大比武”！⚔️ 实验首先对作为机器智能体的 Double DQN 模型进行了500轮的预训练，以确保它身经百战、具备可靠的基准决策能力。随后，在100轮的正式评估中，我们收集到了以下激动人心的关键结果，完美复现并验证了论文的核心思想。🚀
+We conducted a systematic “battle royale” of all algorithms in the **LunarLander-v3** simulation environment! ⚔️ The experiment began with 500 episodes of pretraining for the Double DQN model (acting as the machine agent) to ensure robust baseline decision-making capabilities. In a subsequent 100-episode evaluation, we collected the following exciting results, perfectly reproducing and validating the core ideas of the paper. 🚀
 
-### 1\. 累积奖励对比 🏆
+### 1. Cumulative Reward Comparison 🏆
 
 - ![Reward Comparison](results/Reward%20Comparison.png)
 
-累积奖励的分布情况清晰地揭示了各算法的“武力值” 💪，优秀的算法能够获得更高的分数！
+The distribution of cumulative rewards clearly reveals the “strength” of each algorithm 💪, with superior algorithms achieving higher scores!
 
-  * **在机器交易人类 (MTHA) 场景中**：
-      * **HOA (纯人类操作) 👨‍💻** 的中位数奖励位于负值区间，表现不尽人意。
-      * 引入机器干预的 **MTHA** 与 **MTHA-B 🤖** 算法的奖励表现均显著优于 HOA，奖励中位数从负值大幅跃升至 **约250分** 的较高水平，证明了人机协作框架的强大威力！
-  * **在人类交易机器 (HTMA) 场景中**：
-      * **HTMA-B (引入自主边界) 🧠** 算法的奖励曲线和分布同样全面优于基准的 **MOA (纯机器操作)** 与 **HTMA**。
-      * HTMA-B 的中位数奖励提升至 **约270分**，且其奖励分布系统性地高于其他算法，表明其任务完成质量最优。
+  * **In the Machine-Traded Human (MTHA) Scenario**:  
+      * **HOA (Human-Only) 👨‍💻** has a median reward in the negative range, indicating poor performance.  
+      * Algorithms with machine intervention, **MTHA** and **MTHA-B 🤖**, significantly outperform HOA, with median rewards soaring to **approximately 250 points**, demonstrating the power of the human-machine collaboration framework!  
+  * **In the Human-Traded Machine (HTMA) Scenario**:  
+      * **HTMA-B (with Autonomous Boundary) 🧠** consistently outperforms the baseline **MOA (Machine-Only)** and **HTMA**.  
+      * HTMA-B achieves a median reward of **approximately 270 points**, with its reward distribution systematically higher than other algorithms, indicating superior task completion quality.
 
-### 2\. 成功率与飞行轨迹 🛰️ 
+### 2. Success Rate and Flight Trajectories 🛰️
 
 - ![Trajectory with Success Rate](results/Trajectory%20with%20Success%20Rate.jpg)
- 
-任务成功率与飞行轨迹的分析进一步印证了奖励对比的结论，展示了算法的智慧与稳定。
 
-  * **HOA** 的成功率仅为 **4%**，其飞行轨迹散乱，像个没头苍蝇，难以有效完成着陆任务。
-  * 引入机器干预后，**MTHA** 与 **MTHA-B** 算法的成功率均大幅提升至 **73%**，轨迹也表现出高度的目标导向性和稳定性，直奔目标！
-  * 在HTMA场景下，相较于 **MOA** 的 **66%** 成功率，**HTMA** 将其微弱提升至 **67%**。
-  * 然而，引入自主边界的 **HTMA-B** 算法取得了 **高达89%的成功率** 🎉，其飞行轨迹在所有算法中也最为平稳丝滑，展示了其在任务执行上的卓越性能。
-  * **值得一提的是**，通过将原论文的DQN优化为 **Double DQN**，系统整体的稳定性得到了较大提升，这也是HTMA-B能取得如此优异表现的关键因素之一。
+Success rate and trajectory analysis further confirm the reward comparison, showcasing the intelligence and stability of the algorithms.
 
-### 3\. 决策来源分析 🤝 
+  * **HOA** achieves a success rate of only **4%**, with chaotic trajectories resembling a “headless fly,” struggling to complete landing tasks.  
+  * With machine intervention, **MTHA** and **MTHA-B** boost the success rate to **73%**, with highly goal-oriented and stable trajectories heading straight for the target!  
+  * In the HTMA scenario, compared to **MOA**’s **66%** success rate, **HTMA** slightly improves it to **67%**.  
+  * However, **HTMA-B**, with the autonomous boundary, achieves an impressive **89% success rate** 🎉, with the smoothest and most stable trajectories among all algorithms, showcasing its superior task execution performance.  
+  * **Notably**, upgrading the original DQN to **Double DQN** significantly enhances system stability, a key factor in HTMA-B’s outstanding performance.
+
+### 3. Decision Source Analysis 🤝
 
 - ![Action Rate](results/Action%20Rate.png)
 
-决策权归谁？这个分析让我们能深入理解人、机、边界三者是如何协同工作的。
+Who makes the decisions? This analysis provides insight into how humans, machines, and boundaries collaborate.
 
-  * **在MTHA场景中**：
-      * 性能的提升源于决策权的有效转移。在 **MTHA** 框架下，机器的高精度决策在绝大多数时间里占据主导，有效弥补了人类操作的不足。
-      * 引入自主边界的 **MTHA-B** 算法在此基础上进一步优化，边界动作的出现替代了部分人类的次优操作，实现了更精细的决策。
-  * **在HTMA场景中**：
-      * **HTMA-B** 呈现出一种更为高效的 **“人-机-边界”三方协同模式** 👨‍💻🤖🧠。
-      * 在该模式下，自主边界通过不断学习并融合人类与机器的历史最优经验，形成了一个可靠的第三方决策源，显著提升了机器在人类主导下的表现，是达成高成功率的核心。  
+  * **In the MTHA Scenario**:  
+      * Performance improvements stem from effective decision authority transfer. In the **MTHA** framework, the machine’s high-precision decisions dominate most of the time, compensating for human shortcomings.  
+      * **MTHA-B**, with the autonomous boundary, further optimizes this by replacing some suboptimal human actions with boundary decisions, achieving finer decision-making.  
+  * **In the HTMA Scenario**:  
+      * **HTMA-B** exhibits a highly efficient **human-machine-boundary collaboration mode** 👨‍💻🤖🧠.  
+      * The autonomous boundary continuously learns and integrates the best historical experiences of both humans and machines, forming a reliable third-party decision source that significantly enhances machine performance under human leadership, a core factor in achieving high success rates.
 
-## 许可协议 📜
+## License 📜
 
-本项目采用 [MIT License](https://www.google.com/search?q=MIT+License) 开源许可协议。🔓
+This project is licensed under the [MIT License](https://www.google.com/search?q=MIT+License). 🔓
 
-## 致谢 🙏
+## Acknowledgments 🙏
 
-本项目的实现与思想源于以下研究工作，特此致谢：  
+The implementation and ideas of this project are inspired by the following research work, to which we express our gratitude:
 
-> Q. Zhang, Y. Kang, Y. -B. Zhao, P. Li and S. You, "Traded Control of Human-Machine Systems for Sequential Decision-Making Based on Reinforcement Learning," in IEEE Transactions on Artificial Intelligence, vol. 3, no. 4, pp. 553-565, Aug. 2022, doi: 10.1109/TAI.2021.3127857.  
+> Q. Zhang, Y. Kang, Y. -B. Zhao, P. Li and S. You, "Traded Control of Human-Machine Systems for Sequential Decision-Making Based on Reinforcement Learning," in IEEE Transactions on Artificial Intelligence, vol. 3, no. 4, pp. 553-565, Aug. 2022, doi: 10.1109/TAI.2021.3127857.
 
-同时感谢社区贡献者与测试者！🤝
+We also thank the community contributors and testers! 🤝
 
-## 未来工作 🌱
+## Future Work 🌱
 
-- 支持更复杂的环境（如 Atari 游戏或机器人任务）。  
-- 集成意图推理模块，结合人类行为优化决策。  
-- 动态调整 k-NN 中的 k 值，适应不同状态密度。  
-- 优化可信度评估公式，提升算法适应性。  
+- Support more complex environments (e.g., Atari games or robotic tasks).  
+- Integrate intent inference modules to optimize decisions based on human behavior.  
+- Dynamically adjust the k value in k-NN to adapt to varying state densities.  
+- Optimize the credibility assessment formula to improve algorithm adaptability.  
 📅🚀
